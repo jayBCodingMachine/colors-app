@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import Slider from "rc-slider";
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
@@ -34,10 +35,12 @@ class Navbar extends Component {
 		return (
 			<header className="Navbar">
 				<div className="logo">
-					<a href="#">ReactColorPicker</a>
+					<Link to="/">ReactColorPicker</Link>
 				</div>
+				{/* ---------------------Color shade slider -------------------------------- */}
 				<div className="slider-container">
 					<span>{level}</span>
+
 					<div className="slider">
 						<Slider
 							defaultValue={level}
@@ -48,6 +51,7 @@ class Navbar extends Component {
 						/>
 					</div>
 				</div>
+				{/* ------------------------ Color Format Picker ---------------------------------------- */}
 				<div className="select-container">
 					<Select
 						value={format}
@@ -64,6 +68,7 @@ class Navbar extends Component {
 						</MenuItem>
 					</Select>
 				</div>
+				{/* ------------------Snack Bar----------------------------------- */}
 				<Snackbar
 					anchorOrigin={{
 						vertical: "bottom",
