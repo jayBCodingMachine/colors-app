@@ -40,7 +40,6 @@ function MiniPalette(props) {
 			<h5 className={classes.title}>
 				{paletteName} <span>{emoji}</span>
 			</h5>
-			<h1>Mini Palette</h1>
 		</div>
 	);
 }
