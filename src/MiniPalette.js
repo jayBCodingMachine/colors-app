@@ -48,7 +48,7 @@ function MiniPalette(props) {
 	const {
 		classes,
 		paletteName,
-		id,
+
 		emoji,
 		colors,
 		handleClick,
