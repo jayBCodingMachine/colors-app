@@ -11,7 +11,7 @@
 	height: 50%;
 } */
 
-.ColorBox.go-back {
+/* .ColorBox.go-back {
 	background-color: black;
 }
 
@@ -33,7 +33,7 @@
 	color: white;
 	text-transform: uppercase;
 	border: none;
-}
+} */
 
 /* .copy-button {
 	opacity: 0;
@@ -110,15 +110,15 @@
 	color: white;
 } */
 
-.copy-msg.show {
+/* .copy-msg.show {
 	opacity: 1;
 	transform: scale(1);
 	z-index: 25;
 	transition: all 0.4s ease-in-out;
 	transition-delay: 0.2;
-}
+} */
 
-.copy-msg h1 {
+/* .copy-msg h1 {
 	font-weight: 400;
 	text-shadow: 1px 2px black;
 	background: rgba(255, 255, 255, 0.2);
@@ -126,9 +126,9 @@
 	text-align: center;
 	margin-bottom: 0;
 	padding: 1rem;
-}
+} */
 
-.copy-msg p {
+/* .copy-msg p {
 	font-size: 2rem;
 	font-weight: 100;
-}
+} */
