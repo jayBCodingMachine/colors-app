@@ -2,21 +2,10 @@ import React, { Component } from "react";
 import ColorBox from "./ColorBox";
 import Navbar from "./NavBar";
 import { withStyles } from "@material-ui/core/styles";
-
+import styles from "./styles/PaletteStyles";
 //make sure palette css comes last for slider specificity
 import "./Palette.css";
 import PaletteFooter from "./PaletteFooter";
-
-const styles = {
-	Palette: {
-		height: "100vh",
-		display: "flex",
-		flexDirection: "column",
-	},
-	colors: {
-		height: "85%",
-	},
-};
 
 class Palette extends Component {
 	constructor(props) {
