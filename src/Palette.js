@@ -4,7 +4,7 @@ import Navbar from "./NavBar";
 import { withStyles } from "@material-ui/core/styles";
 import styles from "./styles/PaletteStyles";
 //make sure palette css comes last for slider specificity
-import "./Palette.css";
+
 import PaletteFooter from "./PaletteFooter";
 
 class Palette extends Component {
