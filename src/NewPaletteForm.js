@@ -17,8 +17,10 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import InboxIcon from "@material-ui/icons/MoveToInbox";
 import MailIcon from "@material-ui/icons/Mail";
+import { ChromePicker } from "react-color";
+import Button from "@material-ui/core/Button";
 
-const drawerWidth = 240;
+const drawerWidth = 400;
 
 const styles = (theme) => ({
 	root: {
@@ -141,8 +143,28 @@ class NeWPaletteForm extends Component {
 						</IconButton>
 					</div>
 					<Divider />
-
-					<Divider />
+					<Typography variant="h4">
+						Design Your Palette
+					</Typography>
+					<div>
+						<Button variant="contained" color="secondary">
+							{" "}
+							CLEAR PALETTE
+						</Button>
+						<Button variant="contained" color="primary">
+							{" "}
+							random color
+						</Button>
+					</div>
+					<ChromePicker
+						color="red"
+						onChangeComplete={(newColor) =>
+							console.log(newColor)
+						}
+					/>
+					<Button variant="contained" color="primary">
+						ADD COLOR{" "}
+					</Button>
 				</Drawer>
 				<main
 					className={classNames(classes.content, {
