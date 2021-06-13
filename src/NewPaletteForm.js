@@ -19,6 +19,7 @@ import InboxIcon from "@material-ui/icons/MoveToInbox";
 import MailIcon from "@material-ui/icons/Mail";
 import { ChromePicker } from "react-color";
 import Button from "@material-ui/core/Button";
+import { colors } from "@material-ui/core";
 
 const drawerWidth = 400;
 
@@ -86,9 +87,17 @@ const styles = (theme) => ({
 });
 
 class NeWPaletteForm extends Component {
-	state = {
-		open: false,
-	};
+	constructor(props) {
+		super(props);
+		this.state = {
+			open: true,
+			currentColor: "teal",
+			colors: ["purple", "#e15764"],
+		};
+		this.updateCurrentColor =
+			this.updateCurrentColor.bind(this);
+		this.addNewColor = this.addNewColor.bind(this);
+	}
 
 	handleDrawerOpen = () => {
 		this.setState({ open: true });
@@ -97,6 +106,19 @@ class NeWPaletteForm extends Component {
 	handleDrawerClose = () => {
 		this.setState({ open: false });
 	};
+
+	updateCurrentColor(newColor) {
+		this.setState({ currentColor: newColor.hex });
+	}
+
+	addNewColor() {
+		this.setState({
+			colors: [
+				...this.state.colors,
+				this.state.currentColor,
+			],
+		});
+	}
 
 	render() {
 		const { classes } = this.props;
@@ -157,12 +179,17 @@ class NeWPaletteForm extends Component {
 						</Button>
 					</div>
 					<ChromePicker
-						color="red"
-						onChangeComplete={(newColor) =>
-							console.log(newColor)
-						}
+						color={this.state.currentColor}
+						onChangeComplete={this.updateCurrentColor}
 					/>
-					<Button variant="contained" color="primary">
+					<Button
+						variant="contained"
+						color="primary"
+						style={{
+							backgroundColor: this.state.currentColor,
+						}}
+						onClick={this.addNewColor}
+					>
 						ADD COLOR{" "}
 					</Button>
 				</Drawer>
@@ -172,6 +199,13 @@ class NeWPaletteForm extends Component {
 					})}
 				>
 					<div className={classes.drawerHeader} />
+					<ul>
+						{this.state.colors.map((color) => (
+							<li style={{ backgroundColor: color }}>
+								{color}
+							</li>
+						))}
+					</ul>
 				</main>
 			</div>
 		);
