@@ -11,8 +11,9 @@ import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import { ChromePicker } from "react-color";
-import DraggableColorBox from "./DraggableColorBox";
+import DraggableColorList from "./DraggableColorList";
 import Button from "@material-ui/core/Button";
+import { arrayMove } from "react-sortable-hoc";
 import {
 	ValidatorForm,
 	TextValidator,
@@ -97,8 +98,9 @@ class NeWPaletteForm extends Component {
 		this.updateCurrentColor =
 			this.updateCurrentColor.bind(this);
 		this.addNewColor = this.addNewColor.bind(this);
-		this.handleChnage = this.handleChnage.bind(this);
+		this.handleChange = this.handleChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
+		this.removeColor = this.removeColor.bind(this);
 	}
 
 	componentDidMount() {
@@ -139,7 +141,7 @@ class NeWPaletteForm extends Component {
 		this.setState({ open: false });
 	};
 
-	handleChnage(event) {
+	handleChange(event) {
 		this.setState({
 			[event.target.name]: event.target.value,
 		});
@@ -178,6 +180,11 @@ class NeWPaletteForm extends Component {
 			),
 		});
 	}
+	onSortEnd = ({ oldIndex, newIndex }) => {
+		this.setState(({ colors }) => ({
+			colors: arrayMove(colors, oldIndex, newIndex),
+		}));
+	};
 
 	render() {
 		const { classes } = this.props;
@@ -212,7 +219,7 @@ class NeWPaletteForm extends Component {
 							<TextValidator
 								label="Palette Name"
 								value={this.state.newPaletteName}
-								onChange={this.handleChnage}
+								onChange={this.handleChange}
 								name="newPaletteName"
 								validators={[
 									"required",
@@ -273,7 +280,7 @@ class NeWPaletteForm extends Component {
 						<TextValidator
 							value={this.state.newColorName}
 							name="newColorName"
-							onChange={this.handleChnage}
+							onChange={this.handleChange}
 							validators={[
 								"required",
 								"isColorUnique",
@@ -303,17 +310,12 @@ class NeWPaletteForm extends Component {
 					})}
 				>
 					<div className={classes.drawerHeader} />
-
-					{this.state.colors.map((color) => (
-						<DraggableColorBox
-							key={color.name}
-							color={color.color}
-							name={color.name}
-							handleClick={() =>
-								this.removeColor(color.name)
-							}
-						/>
-					))}
+					<DraggableColorList
+						colors={this.state.colors}
+						removeColor={this.removeColor}
+						axis="xy"
+						onSortEnd={this.onSortEnd}
+					/>
 				</main>
 			</div>
 		);
